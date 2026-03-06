@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "enderlens:block/ender_lens"
+    }
+  }
+}

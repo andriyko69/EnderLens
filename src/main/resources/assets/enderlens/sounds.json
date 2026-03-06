@@ -1,0 +1,8 @@
+{
+  "block.ender_lens.open": {
+    "subtitle": "subtitles.enderlens.block.ender_lens.open",
+    "sounds": [
+      "minecraft:mob/endermen/portal2"
+    ]
+  }
+}

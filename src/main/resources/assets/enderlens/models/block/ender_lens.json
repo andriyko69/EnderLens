@@ -1,0 +1,37 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "1": "enderlens:block/ender_lens_bottom",
+    "6": "minecraft:block/glass",
+    "8": "enderlens:block/ender_lens_top",
+    "9": "enderlens:block/ender_lens_side",
+    "particle": "minecraft:block/glass"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 13, 16],
+      "faces": {
+        "north": {"uv": [0, 3, 16, 16], "texture": "#9"},
+        "east": {"uv": [0, 3, 16, 16], "texture": "#9"},
+        "south": {"uv": [0, 3, 16, 16], "texture": "#9"},
+        "west": {"uv": [0, 3, 16, 16], "texture": "#9"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#8"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+      }
+    },
+    {
+      "from": [0, 13, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 3], "texture": "#6"},
+        "east": {"uv": [0, 0, 16, 3], "texture": "#6"},
+        "south": {"uv": [0, 0, 16, 3], "texture": "#6"},
+        "west": {"uv": [0, 0, 16, 3], "texture": "#6"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#6"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#missing"}
+      }
+    }
+  ]
+}

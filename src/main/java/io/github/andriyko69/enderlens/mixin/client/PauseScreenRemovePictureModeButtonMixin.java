@@ -1,13 +1,14 @@
 package io.github.andriyko69.enderlens.mixin.client;
 
-import net.minecraft.client.gui.components.Button;
+import io.github.andriyko69.enderlens.mixin.client.accessor.ScreenAccessor;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.screens.PauseScreen;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,31 +16,34 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(PauseScreen.class)
-public abstract class PauseScreenRemovePictureModeButtonMixin extends Screen {
-    protected PauseScreenRemovePictureModeButtonMixin(Component title) {
-        super(title);
+public abstract class PauseScreenRemovePictureModeButtonMixin {
+    @Inject(method = "init()V", at = @At("TAIL"))
+    private void enderlens$afterInit(CallbackInfo ci) {
+        enderlens$removePictureModeButton();
     }
 
-    @Inject(method = "createPauseMenu", at = @At("TAIL"))
-    private void enderlens$removePictureModeButton(CallbackInfo ci) {
+    @Unique
+    private void enderlens$removePictureModeButton() {
+        ScreenAccessor accessor = (ScreenAccessor) this;
         Component target = Component.translatable("gui.picturemode");
 
-        ScreenAccessor accessor = (ScreenAccessor) this;
-
-        List<GuiEventListener> children = accessor.enderlens$getChildren();
         List<Renderable> renderables = accessor.enderlens$getRenderables();
+        List<GuiEventListener> children = accessor.enderlens$getChildren();
         List<NarratableEntry> narratables = accessor.enderlens$getNarratables();
 
-        children.removeIf(listener ->
-                listener instanceof Button button && button.getMessage().equals(target)
+        renderables.removeIf(renderable ->
+                renderable instanceof AbstractWidget widget &&
+                        widget.getMessage().equals(target)
         );
 
-        renderables.removeIf(renderable ->
-                renderable instanceof Button button && button.getMessage().equals(target)
+        children.removeIf(listener ->
+                listener instanceof AbstractWidget widget &&
+                        widget.getMessage().equals(target)
         );
 
         narratables.removeIf(entry ->
-                entry instanceof Button button && button.getMessage().equals(target)
+                entry instanceof AbstractWidget widget &&
+                        widget.getMessage().equals(target)
         );
     }
 }

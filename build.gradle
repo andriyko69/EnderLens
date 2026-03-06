@@ -109,8 +109,13 @@ dependencies {
     // compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
     // runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
 
-    compileOnly "maven.modrinth:picture-mode:oHy7evVV"
-    runtimeOnly "maven.modrinth:picture-mode:oHy7evVV"
+    compileOnly "maven.modrinth:picture-mode:${picturemode_modrinth_version}"
+    runtimeOnly "maven.modrinth:picture-mode:${picturemode_modrinth_version}"
+
+    compileOnly "maven.modrinth:nostalgic-tweaks:${nostalgic_tweaks_modrinth_version}"
+    runtimeOnly "maven.modrinth:nostalgic-tweaks:${nostalgic_tweaks_modrinth_version}"
+
+    runtimeOnly "maven.modrinth:architectury-api:${architectury_api_modrinth_version}"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
@@ -131,18 +136,19 @@ dependencies {
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [minecraft_version          : minecraft_version,
-                             minecraft_version_range    : minecraft_version_range,
-                             neo_version                : neo_version,
-                             neo_version_range          : neo_version_range,
-                             loader_version_range       : loader_version_range,
-                             mod_id                     : mod_id,
-                             mod_name                   : mod_name,
-                             mod_license                : mod_license,
-                             mod_version                : mod_version,
-                             mod_authors                : mod_authors,
-                             mod_description            : mod_description,
-                             picturemode_version_range  : picturemode_version_range]
+    var replaceProperties = [minecraft_version              : minecraft_version,
+                             minecraft_version_range        : minecraft_version_range,
+                             neo_version                    : neo_version,
+                             neo_version_range              : neo_version_range,
+                             loader_version_range           : loader_version_range,
+                             mod_id                         : mod_id,
+                             mod_name                       : mod_name,
+                             mod_license                    : mod_license,
+                             mod_version                    : mod_version,
+                             mod_authors                    : mod_authors,
+                             mod_description                : mod_description,
+                             picturemode_version_range      : picturemode_version_range,
+                             nostalgic_tweaks_version_range : nostalgic_tweaks_version_range]
     inputs.properties replaceProperties
     expand replaceProperties
     from "src/main/templates"

@@ -1,5 +1,4 @@
-package io.github.andriyko69.enderlens.mixin.client;
-
+package io.github.andriyko69.enderlens.mixin.client.accessor;
 
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -12,11 +11,11 @@ import java.util.List;
 
 @Mixin(Screen.class)
 public interface ScreenAccessor {
-    @Accessor("children")
-    List<GuiEventListener> enderlens$getChildren();
-
     @Accessor("renderables")
     List<Renderable> enderlens$getRenderables();
+
+    @Accessor("children")
+    List<GuiEventListener> enderlens$getChildren();
 
     @Accessor("narratables")
     List<NarratableEntry> enderlens$getNarratables();
